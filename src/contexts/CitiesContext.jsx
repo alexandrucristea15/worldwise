@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 
-const URL = import.meta.env.VITE_REACT_APP_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const CitiesContext = createContext();
 
@@ -14,7 +14,7 @@ const CitiesProvider = ({ children }) => {
     const fetchCities = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch(`${URL}/cities`);
+        const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         setCities(data);
       } catch (err) {
@@ -29,7 +29,7 @@ const CitiesProvider = ({ children }) => {
   const getCity = async (id) => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${URL}/cities/${id}`);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       setCurrentCity(data);
     } catch (err) {
